@@ -1,11 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { useFonts } from 'expo-font';
+import AppNavigator from './src/AppNavigator';
 
 export default function App() {
+  let[fontsLoaded] = useFonts({
+      "Montserrat-Bold": require("./assets/Fonts/Montserrat-Bold.ttf"),
+      'LilitaOne-Regular': require("./assets/Fonts/LilitaOne-Regular.ttf"),
+      'Fredoka-Bold': require("./assets/Fonts/Fredoka-Bold.ttf"),
+      'Inder-Regular': require("./assets/Fonts/Inder-Regular.ttf"),
+      'Now-Bold': require("./assets/Fonts/Now-Bold.otf"),
+  })
+
+  if(!fontsLoaded){
+      return null;
+  };
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
       <StatusBar style="auto" />
+      <AppNavigator />
     </View>
   );
 }
@@ -13,8 +26,5 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
